@@ -2,3 +2,4 @@ fastapi
 uvicorn[standard]
 gunicorn
 psycopg2-binary
+email-validator
