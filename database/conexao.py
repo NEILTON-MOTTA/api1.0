@@ -6,7 +6,8 @@ connection_pool = pool.SimpleConnectionPool(
     host="187.84.150.143",
     database="dynacomp",
     user="postgres",
-    password="DYNACOMP@MATEUS25#35_00351241728_gs1250"
+    password="DYNACOMP@MATEUS25#35_00351241728_gs1250",
+    port=3597
 )
 
 # Pega uma conexão do pool
