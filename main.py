@@ -4,6 +4,9 @@ from routes import valida_usuario       # importa valida_usuario.py
 from routes import numerador_clientes   # importa valida_usuario.py
 
 app = FastAPI()
+@app.get("/")
+def root():
+    return {"status": "ok"}
 
 app.include_router(cliente.router)
 app.include_router(valida_usuario.router)
