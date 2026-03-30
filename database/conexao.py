@@ -3,10 +3,10 @@ from psycopg2 import pool
 # Cria o pool de conexões (mínimo 1, máximo 10)
 connection_pool = pool.SimpleConnectionPool(
     1, 10,
-    host="127.0.0.1",
+    host="187.84.150.143",
     database="dynacomp",
     user="postgres",
-    password="1234"
+    password="DYNACOMP@MATEUS25#35_00351241728_gs1250"
 )
 
 # Pega uma conexão do pool
