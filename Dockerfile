@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . /app
 
+RUN ls -R
+
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "-m", "gunicorn", "-k", "uvicorn.workers.UvicornWorker", "main:app", "--chdir", "api", "--bind", "0.0.0.0:8000"]
+CMD ["python", "-m", "gunicorn", "-k", "uvicorn.workers.UvicornWorker", "main:app", "--bind", "0.0.0.0:8000"]
