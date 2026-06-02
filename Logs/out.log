@@ -1,0 +1,211 @@
+INFO:     127.0.0.1:59410 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59410 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59476 - "GET /cliente_id/000008 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56214 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56214 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50847 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50847 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1127:2737:7d79:10b5:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1127:2737:7d79:10b5:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "GET /cliente_cnpj/07782864000151 HTTP/1.1" 401 Unauthorized
+INFO:     54.86.50.139:0 - "GET /cliente_cnpj/07782864000151 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "GET /cliente_nome/pecas?limit=2 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "GET /cliente_id/009991 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "GET /cliente_logradouro/WALDEMAR HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "GET /cliente_telefone1/96472 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "GET /SUPERVISOR/1234 HTTP/1.1" 404 Not Found
+INFO:     54.86.50.139:0 - "POST /SUPERVISOR/1234 HTTP/1.1" 404 Not Found
+INFO:     54.86.50.139:0 - "POST /cliente HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PUT /numerador_cliente/incrementar HTTP/1.1" 200 OK
+---- SQL GERADA (PATCH) ----
+
+        UPDATE clientes
+           SET cli_nome = 'NOME ALTERADO'
+         WHERE cli_codigo = '009991'
+     RETURNING *;
+    
+----------------------------
+INFO:     54.86.50.139:0 - "PATCH /cliente/009991 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PATCH /cliente_id/009991 HTTP/1.1" 405 Method Not Allowed
+INFO:     54.86.50.139:0 - "PATCH /cliente_id/009991 HTTP/1.1" 405 Method Not Allowed
+INFO:     54.86.50.139:0 - "GET /cliente_id/009991 HTTP/1.1" 200 OK
+---- SQL GERADA (PATCH) ----
+
+        UPDATE clientes
+           SET cli_nome = 'Criado pela API'
+         WHERE cli_codigo = '009991'
+     RETURNING *;
+    
+----------------------------
+INFO:     54.86.50.139:0 - "PATCH /cliente/009991 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "GET /cliente_id/009991 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /valida_auth/Supervisor%20/1234 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /valida_auth/SUPERVISOR%20/1234 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /valida_auth/SUPERVISOR%20/1234 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /valida_auth/SUPERVISOR%20/1234 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /cliente_nome/REAL?limit=50 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /cliente_nome/Guigo?limit=50 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /cliente_nome/Guigo?limit=50 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53207 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53207 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51751 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51751 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:2ed6:5e9d:2de9:705c:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:388:a019:2360:9c21:7fff:feac:56f6:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:388:a019:2360:9c21:7fff:feac:56f6:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:6622:7cfc:951d:e6e1:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:6622:7cfc:951d:e6e1:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:c9dc:8030:875b:8cfc:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:c9dc:8030:875b:8cfc:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:c9dc:8030:875b:8cfc:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:c9dc:8030:875b:8cfc:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:c9dc:8030:875b:8cfc:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:c9dc:8030:875b:8cfc:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2a06:98c0:360b:372c:66f7:9aec:e8fc:f7aa:0 - "HEAD / HTTP/1.1" 404 Not Found
+INFO:     2804:388:9041:e94c:18f2:98ff:fedd:674e:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:388:9041:e94c:18f2:98ff:fedd:674e:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     179.248.160.24:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     179.248.160.24:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:9e0f:242e:18c4:622:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:9e0f:242e:18c4:622:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:4162:5d7d:83ba:ad14:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:4162:5d7d:83ba:ad14:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:388:a019:fe53:50d3:5aff:fe78:ab2f:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:388:a019:fe53:50d3:5aff:fe78:ab2f:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:d41:bb5d:2900:143d:8c53:bee7:6aaf:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:d41:bb5d:2900:143d:8c53:bee7:6aaf:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2a06:98c0:3624:2aa2:f8de:44c3:40f0:9edd:0 - "HEAD / HTTP/1.1" 404 Not Found
+INFO:     2804:388:8032:9b9:4ccb:8bff:fef0:304f:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:388:8032:9b9:4ccb:8bff:fef0:304f:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:388:8032:9b9:4ccb:8bff:fef0:304f:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:388:8032:9b9:4ccb:8bff:fef0:304f:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:388:8032:9b9:4ccb:8bff:fef0:304f:0 - "GET /cliente_id/000008 HTTP/1.1" 200 OK
+INFO:     2804:388:8032:9b9:4ccb:8bff:fef0:304f:0 - "GET /cliente_id/000225 HTTP/1.1" 200 OK
+INFO:     2804:388:8032:9b9:4ccb:8bff:fef0:304f:0 - "GET /cliente_id/000226 HTTP/1.1" 200 OK
+INFO:     2804:388:8032:9b9:4ccb:8bff:fef0:304f:0 - "GET /cliente_id/000220 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /produto_codigo/000124 HTTP/1.1" 401 Unauthorized
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /produto_codigo/000124 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /cliente_id/000008 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /produto_codigo/000123 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /produto_codigo/000124 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /produto_codigo/000124 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /produto_codigo/000124 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /produto_codigo/000124 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:7c2b:ee1f:a4cc:d1bf:0 - "GET /produto_codigo/000010 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PUT /numerador_cliente/incrementar HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PUT /numerador_cliente/incrementar HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123 HTTP/1.1" 500 Internal Server Error
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123 HTTP/1.1" 500 Internal Server Error
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123 HTTP/1.1" 500 Internal Server Error
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 500 Internal Server Error
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 500 Internal Server Error
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 500 Internal Server Error
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 500 Internal Server Error
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 200 OK
+INFO:     54.86.50.139:0 - "PUT /baixar_produto/000123/17 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1fdd:441a:affc:cce6:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1fdd:441a:affc:cce6:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1fdd:441a:affc:cce6:0 - "PUT /baixar_produto/000123/3 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1fdd:441a:affc:cce6:0 - "PUT /baixar_produto/000123/97 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1fdd:441a:affc:cce6:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1fdd:441a:affc:cce6:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1fdd:441a:affc:cce6:0 - "PUT /baixar_produto/000123/1 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1fdd:441a:affc:cce6:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:263a:1015:b91d:50aa:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:263a:1015:b91d:50aa:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1adb:4b2a:8620:9012:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:1adb:4b2a:8620:9012:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /produto_codigo/000093 HTTP/1.1" 401 Unauthorized
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /produto_codigo/000093 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /produto_codigo/000093 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /produto_codigo/000093 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /produto_codigo/000093 HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:388:a012:5736:a81e:5eff:fe8e:f635:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:4ed7:249b:8aef:7b1e:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:4ed7:249b:8aef:7b1e:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:4ed7:249b:8aef:7b1e:0 - "GET /cliente_id/000008 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:4ed7:249b:8aef:7b1e:0 - "PUT /baixar_produto/000123/4 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:4ed7:249b:8aef:7b1e:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK
+INFO:     2a06:98c0:3624:eb27:523d:cb85:993:112:0 - "HEAD / HTTP/1.1" 404 Not Found
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/1000 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /baixar_produto/000123/1 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/1001 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/2000 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/2000 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/1500 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/1500 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/1400 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/1400 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/1500 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/1500 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/1500 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/1500 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:fd5f:c406:a08:63ca:0 - "PUT /inventario_produto/000123/1500 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "PUT /inventario_produto/000123/3000 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "PUT /inventario_produto/000123/3000 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "PUT /inventario_produto/000123/130 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "PUT /inventario_produto/000123/4500 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "PUT /inventario_produto/000123/4500 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "PUT /inventario_produto/000123/600 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "PUT /inventario_produto/000123/5000 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:74a2:a9e3:a0ea:c5ad:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:facd:6fa2:b539:9ef6:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:facd:6fa2:b539:9ef6:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:facd:6fa2:b539:9ef6:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:facd:6fa2:b539:9ef6:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:facd:6fa2:b539:9ef6:0 - "PUT /baixar_produto/000123/2 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:facd:6fa2:b539:9ef6:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:facd:6fa2:b539:9ef6:0 - "PUT /inventario_produto/000123/5000 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:facd:6fa2:b539:9ef6:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK
+INFO:     2804:14d:1681:8f54:facd:6fa2:b539:9ef6:0 - "PUT /baixar_produto/Xxccc/2 HTTP/1.1" 400 Bad Request
+INFO:     2804:14d:1681:8f54:facd:6fa2:b539:9ef6:0 - "PUT /baixar_produto/999999/2 HTTP/1.1" 500 Internal Server Error
+INFO:     2804:214:c:29e:9258:b4e6:9be8:4826:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     2804:214:c:29e:9258:b4e6:9be8:4826:0 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     2804:214:c:29e:9258:b4e6:9be8:4826:0 - "GET /produto_codigo/000123 HTTP/1.1" 200 OK

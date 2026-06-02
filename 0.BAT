@@ -1,1 +1,3 @@
-CD C:\DynaComp\API\DynaControl\1.0
+
+cd C:\DynaComp\API\Api_1.0
+  
