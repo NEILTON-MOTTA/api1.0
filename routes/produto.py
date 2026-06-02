@@ -105,7 +105,7 @@ def put_baixar_qtde(
     if len(codigo_produto) != 6:
         raise HTTPException(
             status_code=400,
-            detail="Codigo Produto inválido (use 6 dígitos)."
+            detail="Codigo Produto inválido (use   6 dígitos)."
         )
 
     conn = get_conexao()
