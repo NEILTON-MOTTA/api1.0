@@ -4,10 +4,8 @@ from routes import valida_usuario       # importa valida_usuario.py
 from routes import numerador_clientes   # importa valida_usuario.py
 from routes import produto              # importa produto.py
 
-#app = FastAPI()
-app = FastAPI(
-    title="API NEILTON TESTE 999"
-)
+app = FastAPI()
+
 
 app.include_router(cliente.router)
 app.include_router(valida_usuario.router)
