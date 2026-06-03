@@ -4,7 +4,10 @@ from routes import valida_usuario       # importa valida_usuario.py
 from routes import numerador_clientes   # importa valida_usuario.py
 from routes import produto              # importa produto.py
 
-app = FastAPI()
+#app = FastAPI()
+app = FastAPI(
+    title="API VPS"
+)
 
 
 app.include_router(cliente.router)
