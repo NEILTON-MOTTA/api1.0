@@ -10,6 +10,10 @@ app = FastAPI(
     title="API VPS"
 )
 
+@app.get("/teste-versao")
+def teste_versao():
+    return {"versao": "BUILD 20260603"
+
 
 app.include_router(cliente.router)
 app.include_router(valida_usuario.router)
