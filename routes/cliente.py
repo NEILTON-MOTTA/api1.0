@@ -84,7 +84,7 @@ def get_cliente(cli_codigo: str):
 
     if cliente:
         return {
-                 "__codigee": cliente[0],
+                 "__codigoo": cliente[0],
                  "__nomeal": cliente[1],
                  "__fantasia": cliente[2],
                  "__tipo": cliente[3],
