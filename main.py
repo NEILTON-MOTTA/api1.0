@@ -9,9 +9,9 @@ app = FastAPI(
     title="API  X"
 )
 
-@app.get("/teste-versao nATAH")
+@app.get("/teste-versao 2026.06.03-002")
 def teste_versao():
-    return {"versao": "BUILD TESTE"}
+    return {"versao": "2026.06.03-002"}
 
 
 app.include_router(cliente.router)
