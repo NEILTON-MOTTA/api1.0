@@ -1,4 +1,3 @@
-print("######## API VPS - BUILD 20260603 ########")
 from fastapi import FastAPI
 from routes import cliente              # importa cliente.py
 from routes import valida_usuario       # importa valida_usuario.py
@@ -7,12 +6,12 @@ from routes import produto              # importa produto.py
 
 #app = FastAPI()
 app = FastAPI(
-    title="API VPS"
+    title="API DYNACONTROL"
 )
 
-@app.get("/teste-versao")
+@app.get("/teste-versao ZZ")
 def teste_versao():
-    return {"versao": "BUILD 20260603"}
+    return {"versao": "BUILD TESTE"}
 
 
 app.include_router(cliente.router)
