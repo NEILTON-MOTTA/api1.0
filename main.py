@@ -1,3 +1,4 @@
+print("######## API VPS - BUILD 20260603 ########")
 from fastapi import FastAPI
 from routes import cliente              # importa cliente.py
 from routes import valida_usuario       # importa valida_usuario.py
