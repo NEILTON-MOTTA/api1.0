@@ -12,7 +12,7 @@ app = FastAPI(
 
 @app.get("/teste-versao")
 def teste_versao():
-    return {"versao": "BUILD 20260603"
+    return {"versao": "BUILD 20260603"}
 
 
 app.include_router(cliente.router)
