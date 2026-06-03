@@ -6,7 +6,7 @@ from routes import produto              # importa produto.py
 
 #app = FastAPI()
 app = FastAPI(
-    title="API  X"
+    title="API  X6"
 )
 
 @app.get("/teste-versao 2026.06.03-002")
