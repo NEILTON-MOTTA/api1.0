@@ -6,10 +6,10 @@ from routes import produto              # importa produto.py
 
 #app = FastAPI()
 app = FastAPI(
-    title="API DYNACONTROL"
+    title="API  X"
 )
 
-@app.get("/teste-versao ZZ")
+@app.get("/teste-versao nATAH")
 def teste_versao():
     return {"versao": "BUILD TESTE"}
 
