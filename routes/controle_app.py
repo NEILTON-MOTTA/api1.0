@@ -71,7 +71,7 @@ def get_empresa_por_cnpj(cnpj: str):
     try:
         cur.execute("""
     SELECT ctl_cnpj, ctl_empresa, ctl_endpoint, ctl_ativo
-    FROM estoque
+    FROM api_controle_app
     WHERE ctl_cnpj = %s
     LIMIT 1
    """, (cnpj_empresa,))
