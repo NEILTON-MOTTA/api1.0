@@ -75,16 +75,16 @@ def get_empresa_por_cnpj(cnpj: str):
     WHERE ctl_cnpj = %s
     LIMIT 1
    """, (cnpj_empresa,))
-        Empresa = cur.fetchone()
+        empresa = cur.fetchone()
     finally:
         cur.close()
         release_conexao(conn)
 
     if Empresa:
         return {
-                 "__cnpj": produto["ctl_cnpj"],
-                 "__empresa": produto["ctl_empresa"],
-                 "__endpoint": produto["ctl_endpoint"],
+                 "__cnpj": empresa["ctl_cnpj"],
+                 "__empresa": empresa["ctl_empresa"],
+                 "__endpoint": empresa["ctl_endpoint"],
                  "__retorno":"1"
         }
 
