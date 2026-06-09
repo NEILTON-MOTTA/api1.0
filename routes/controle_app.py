@@ -6,7 +6,7 @@ from psycopg2.extras import RealDictCursor
 import re
 from typing import Dict, Any
 from psycopg2 import errors
-from funcoes.produto import buscar_quantidade_produto
+
 
 
 
@@ -60,327 +60,35 @@ def validar_api_key(api_key: str = Security(api_key_header)):
 # ---------------------------------------
 # --- Rota 1: Buscar Produto por codigo--
 # ---------------------------------------
-@router.get("/produto_codigo/{codigo}", dependencies=[Depends(validar_api_key)])
-def get_produto_por_codigo(codigo: str):
-    codigo_produto = re.sub(r"\D", "", codigo or "")
-    if len(codigo_produto) != 6:
-        raise HTTPException(status_code=400, detail="Codigo Produto inválido (use 6 dígitos).")
+@router.get("/empresa_cnpj/{cnpj}", dependencies=[Depends(validar_api_key)])
+def get_empresa_por_cnpj(cnpj: str):
+    cnpj_empresa = re.sub(r"\D", "", codigo or "")
+    if len(cnpj_empresa) != 14:
+        raise HTTPException(status_code=400, detail="Cnpj inválido (use 14 dígitos).")
 
     conn = get_conexao()
     cur = conn.cursor(cursor_factory=RealDictCursor)
     try:
         cur.execute("""
-    SELECT est_codigo, est_descricao,est_qtde
+    SELECT ctl_cnpj, ctl_empresa, ctl_endpoint, ctl_ativo
     FROM estoque
-    WHERE est_codigo = %s
+    WHERE ctl_cnpj = %s
     LIMIT 1
-   """, (codigo_produto,))
-        produto = cur.fetchone()
+   """, (cnpj_empresa,))
+        Empresa = cur.fetchone()
     finally:
         cur.close()
         release_conexao(conn)
 
     if produto:
         return {
-                 "__codigo": produto["est_codigo"],
-                 "__descricao": produto["est_descricao"],
-                 "__qtde": produto["est_qtde"],
+                 "__cnpj": produto["ctl_cnpj"],
+                 "__empresa": produto["ctl_empresa"],
+                 "__endpoint": produto["ctl_endpoint"],
                  "__retorno":"1"
         }
 
     else:
-        raise HTTPException(status_code=404, detail="Produto não encontrado")
+        raise HTTPException(status_code=404, detail="Empresa não encontrado")
     
 
-
-@router.put("/baixar_produto/{codigo}/{quantidade}")
-def put_baixar_qtde(
-    codigo: str,
-    quantidade: int,
-    api_key: str = Security(validar_api_key)
-):
-
-    codigo_produto = re.sub(r"\D", "", codigo or "")
-
-    if len(codigo_produto) != 6:
-        raise HTTPException(
-            status_code=400,
-            detail="Codigo Produto inválido (use 6 dígitos)."
-        )
-
-    conn = get_conexao()
-    cursor = conn.cursor(cursor_factory=RealDictCursor)
-
-    try:
-
-        cursor.execute("""
-            UPDATE estoque
-               SET est_qtde = est_qtde - %s
-             WHERE est_codigo = %s
-               AND est_qtde >= %s
-         RETURNING est_qtde
-        """, (
-            quantidade,
-            codigo_produto,
-            quantidade
-        ))
-
-        row = cursor.fetchone()
-
-        if not row:
-            conn.rollback()
-
-            raise HTTPException(
-                status_code=500,
-                detail="Nenhuma linha atualizada."
-            )
-
-        #-----------------------------------------------------
-        # GERA LOG
-        #-----------------------------------------------------
-        sql_log = """
-            INSERT INTO api_produtos_log (
-                log_data,
-                log_hora,
-                log_codigo,
-                log_operacao,
-                log_qtde
-            )
-            VALUES (
-                CURRENT_DATE,
-                CURRENT_TIME,
-                %s,
-                %s,
-                %s
-            )
-        """
-
-        dados_log = (
-            codigo_produto,
-            'baixa estoque',
-            quantidade
-        )
-
-        cursor.execute(sql_log, dados_log)
-        #-----------------------------------------------------
-
-
-
-
-        
-        
-
-        conn.commit()
-
-        proximo_num = row["est_qtde"]
-
-        return {
-            "mensagem": "estoque atualizado com sucesso",
-            "nova_qtde": proximo_num
-        }
-
-    except Exception as e:
-
-        conn.rollback()
-
-        raise HTTPException(
-            status_code=500,
-            detail=f"Erro ao atualizar: {str(e)}"
-        )
-
-    finally:
-
-        cursor.close()
-        release_conexao(conn)
-
-
-
-
-@router.put("/inventario_produto/{codigo}/{quantidade}")
-def put_inventario_qtde(
-    codigo: str,
-    quantidade: int,
-    api_key: str = Security(validar_api_key)
-):
-
-    codigo_produto = re.sub(r"\D", "", codigo or "")
-
-    if len(codigo_produto) != 6:
-        raise HTTPException(
-            status_code=400,
-            detail="Codigo Produto inválido (use 6 dígitos)."
-        )
-
-    qtdeAnterior = buscar_quantidade_produto(codigo_produto)
-    conn = get_conexao()
-    cursor = conn.cursor(cursor_factory=RealDictCursor)
-
-    try:
-
-        cursor.execute("""
-            UPDATE estoque
-               SET est_qtde =  %s
-             WHERE est_codigo = %s
-             RETURNING est_qtde
-        """, (
-            quantidade,
-            codigo_produto
-            
-        ))
-
-        row = cursor.fetchone()
-
-        if not row:
-            conn.rollback()
-
-            raise HTTPException(
-                status_code=500,
-                detail="Nenhuma linha atualizada."
-            )
-
-        #-----------------------------------------------------
-        # GERA LOG
-        #-----------------------------------------------------
-        sql_log = """
-            INSERT INTO api_produtos_log (
-                log_data,
-                log_hora,
-                log_codigo,
-                log_operacao,
-                log_qtde
-            )
-            VALUES (
-                CURRENT_DATE,
-                CURRENT_TIME,
-                %s,
-                %s,
-                %s
-            )
-        """
-
-        dados_log = (
-            codigo_produto,
-            'INVENTARIO',
-            quantidade
-        )
-
-        cursor.execute(sql_log, dados_log)
-
-
-        
-        #-----------------------------------------------------
-
-        #-----------------------------------------------------
-        # Salva na tabela inventario
-        #-----------------------------------------------------
-
-        cursor.execute("""
-            SELECT COALESCE(MAX(inv_numero::INTEGER), 0) + 1 AS novo_numero
-            FROM inventario
-            WHERE inv_numero ~ '^[0-9]+$'
-        """) 
-
-       
-
-        resultado = cursor.fetchone()
-
-        novo_numero = str(resultado["novo_numero"])    
-
-
-        if quantidade ==0:
-           tipo = "Z"
-           qtde_entrada_saida = 0
-
-        elif quantidade < qtdeAnterior:
-           tipo = "S"
-           qtde_entrada_saida = qtdeAnterior - quantidade
-           
-        elif quantidade > qtdeAnterior:
-            if qtdeAnterior <0:
-               tipo = "E"
-               qtde_entrada_saida = quantidade- abs(qtdeAnterior )
-            else:
-               tipo = "E"
-               qtde_entrada_saida = quantidade+ qtdeAnterior 
-            
-            
-
-           
-
-
-
-          
-         
-
-        
-        sql_inv = """
-            INSERT INTO inventario(
-                inv_codproduto,
-                inv_data,
-                inv_inventario,
-                inv_login,
-                inv_numero,
-                inv_hora,
-                inv_obs,
-                inv_qtde,
-                inv_tipo,
-                inv_qtde_entrada_saida
-            )
-            VALUES (
-                %s, 
-                CURRENT_DATE,
-                %s, 
-                %s, 
-                %s,
-                CURRENT_TIME,
-                %s,
-                %s,
-                %s,
-                %s
-                
-                
-            )
-        """
-          
-        dados_inv = (
-            codigo_produto,
-            quantidade,
-            'API',
-            novo_numero,
-            'API',
-            qtdeAnterior,
-            tipo,
-            qtde_entrada_saida
-        )
-
-        cursor.execute(sql_inv, dados_inv)
-        
-        #-----------------------------------------------------
-        #-----------------------------------------------------
-
-
-
-        conn.commit()
-
-        proximo_num = row["est_qtde"]
-
-        return {
-            "mensagem": "estoque atualizado com sucesso",
-            "nova_qtde": proximo_num
-        }
-
-    except Exception as e:
-
-        conn.rollback()
-
-        raise HTTPException(
-            status_code=500,
-            detail=f"Erro ao atualizar: {str(e)}"
-        )
-
-    finally:
-
-        cursor.close()
-        release_conexao(conn)
-
-      
