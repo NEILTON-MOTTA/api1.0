@@ -62,7 +62,7 @@ def validar_api_key(api_key: str = Security(api_key_header)):
 # ---------------------------------------
 @router.get("/empresa_cnpj/{cnpj}", dependencies=[Depends(validar_api_key)])
 def get_empresa_por_cnpj(cnpj: str):
-    cnpj_empresa = re.sub(r"\D", "", codigo or "")
+    cnpj_empresa = re.sub(r"\D", "", cnpj or "")
     if len(cnpj_empresa) != 14:
         raise HTTPException(status_code=400, detail="Cnpj inválido (use 14 dígitos).")
 
