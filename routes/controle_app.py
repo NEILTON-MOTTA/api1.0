@@ -80,7 +80,7 @@ def get_empresa_por_cnpj(cnpj: str):
         cur.close()
         release_conexao(conn)
 
-    if produto:
+    if Empresa:
         return {
                  "__cnpj": produto["ctl_cnpj"],
                  "__empresa": produto["ctl_empresa"],
