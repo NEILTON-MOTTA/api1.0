@@ -86,7 +86,7 @@ def get_empresa_por_cnpj(cnpj: str):
                  "__empresa": empresa["ctl_empresa"],
                  "__endpoint": empresa["ctl_endpoint"],
                  "__ativo": empresa["ctl_ativo"],
-                 "__encontrado":"True"
+                 "__encontrado":True
         }
 
     else:
