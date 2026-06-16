@@ -70,10 +70,12 @@ def get_produto_por_codigo(codigo: str):
     cur = conn.cursor(cursor_factory=RealDictCursor)
     try:
         cur.execute("""
-    SELECT est_codigo, est_descricao,est_qtde
-    FROM estoque
-    WHERE est_codigo = %s
-    LIMIT 1
+      SELECT est_codigo, est_descricao,est_aplicacao,est_qtde,est_preco1,est_margem1,est_preco2,est_margem2,est_preco3,est_margem3,est_preco4,est_margem4,
+      fabricante.fab_fabricante,segmentos.seg_segmento
+      FROM estoque left join  fabricante on fabricante.fab_codigo=estoque.est_fabricante
+      left join  segmentos on segmentos.seg_codigo=estoque.est_segmento
+      WHERE est_codigo = %s
+      LIMIT 1
    """, (codigo_produto,))
         produto = cur.fetchone()
     finally:
@@ -82,10 +84,22 @@ def get_produto_por_codigo(codigo: str):
 
     if produto:
         return {
-                 "__codigo": produto["est_codigo"],
-                 "__descricao": produto["est_descricao"],
-                 "__qtde": produto["est_qtde"],
-                 "__retorno":"1"
+                 "codigo": produto["est_codigo"],
+                 "descricao": produto["est_descricao"],
+                 "aplicacao": produto["est_aplicacao"],
+                 "fabricante": produto["fab_fabricante"],
+                 "segmento": produto["seg_segmento"],
+                 "qtde": produto["est_qtde"],
+                 "preco1": produto["est_preco1"],
+                 "margem1": produto["est_margem1"],
+                 "preco2": produto["est_preco2"],
+                 "margem2": produto["est_margem2"],
+                 "preco3": produto["est_preco3"],
+                 "margem3": produto["est_margem3"],
+                 "preco4": produto["est_preco4"],
+                 "margem4": produto["est_margem4"],
+                 "encontrado":"true"
+
         }
 
     else:
@@ -93,6 +107,59 @@ def get_produto_por_codigo(codigo: str):
     
 
 
+# -----------------------------------------------
+# --- Rota 2: Buscar Produto por codFabricante--
+# -----------------------------------------------
+@router.get("/produto_codfabricante/{codfabricante}", dependencies=[Depends(validar_api_key)])
+def get_produto_por_codfabricante(codfabricante: str):
+    
+    codfab_produto=(codfabricante or "").strip().upper()
+    
+    
+    
+    conn = get_conexao()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    try:
+        cur.execute("""
+    SELECT est_codigo, est_descricao,est_aplicacao,est_qtde,est_preco1,est_margem1,est_preco2,est_margem2,est_preco3,est_margem3,est_preco4,est_margem4,
+    fabricante.fab_fabricante,segmentos.seg_segmento
+    FROM estoque left join  fabricante on fabricante.fab_codigo=estoque.est_fabricante
+    left join  segmentos on segmentos.seg_codigo=estoque.est_segmento
+    WHERE est_codfabricante = %s
+    
+   """, (codfab_produto,))
+        produto = cur.fetchone()
+    finally:
+        cur.close()
+        release_conexao(conn)
+
+    if produto:
+        return {
+                 "codigo": produto["est_codigo"],
+                 "descricao": produto["est_descricao"],
+                 "aplicacao": produto["est_aplicacao"],
+                 "fabricante": produto["fab_fabricante"],
+                 "segmento": produto["seg_segmento"],
+                 "qtde": produto["est_qtde"],
+                 "preco1": produto["est_preco1"],
+                 "margem1": produto["est_margem1"],
+                 "preco2": produto["est_preco2"],
+                 "margem2": produto["est_margem2"],
+                 "preco3": produto["est_preco3"],
+                 "margem3": produto["est_margem3"],
+                 "preco4": produto["est_preco4"],
+                 "margem4": produto["est_margem4"],
+                 "encontrado":"true"
+        }
+
+    else:
+        raise HTTPException(status_code=404, detail="Produto não encontrado")
+    
+
+
+# -----------------------------------------------
+# --- Rota 3: Baixa no estoque-------------------
+# -----------------------------------------------
 @router.put("/baixar_produto/{codigo}/{quantidade}")
 def put_baixar_qtde(
     codigo: str,
@@ -194,6 +261,9 @@ def put_baixar_qtde(
         release_conexao(conn)
 
 
+# -----------------------------------------------
+# --- Rota 4: Inventario no estoque--------------
+# -----------------------------------------------
 
 
 @router.put("/inventario_produto/{codigo}/{quantidade}")
