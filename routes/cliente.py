@@ -10,18 +10,12 @@ from typing import Dict, Any
 from psycopg2 import errors
 
 
-
-
-
-
-
-
-
-
-
 router = APIRouter()
-
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # Lê a chave do header X-API-Key (pode trocar o nome se preferir)
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
 def validar_api_key(api_key: str = Security(api_key_header)):
@@ -56,10 +50,12 @@ def validar_api_key(api_key: str = Security(api_key_header)):
     # Você pode retornar dados da chave para usar dentro das rotas (ex.: cnpj do integrador)
     return {"api_codigo": row[0], "api_cnpj": row[1]}
 
-# --- Rota 2: Buscar cliente por CNPJ ---
 
 # Aplica a validação de API key em TODO o router
 
+
+
+#-------------------------------------------------------------------------------
 
 # -----------------------------------------
 # --- Rota 1: Buscar cliente por codigo ---
@@ -84,8 +80,8 @@ def get_cliente(cli_codigo: str):
 
     if cliente:
         return {
-                 "__codigoo": cliente[0],
-                 "__nomeal": cliente[1],
+                 "__codigo": cliente[0],
+                 "__nome": cliente[1],
                  "__fantasia": cliente[2],
                  "__tipo": cliente[3],
                  "__regimetributario": cliente[4],
