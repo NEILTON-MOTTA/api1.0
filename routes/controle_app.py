@@ -99,7 +99,7 @@ def get_empresa_por_cnpj(cnpj: str):
 # ---------------------------------------
 # --- Rota 1: Valida por id--
 # ---------------------------------------
-@router.get("/empresa_id/{id}", dependencies=[Depends(validar_api_key)])
+@router.get("/empresa_id/{buscaid}", dependencies=[Depends(validar_api_key)])
 def get_empresa_por_id(buscaid: str):
    
     
